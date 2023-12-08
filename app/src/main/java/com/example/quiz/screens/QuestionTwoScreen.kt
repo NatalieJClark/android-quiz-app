@@ -17,14 +17,13 @@ import com.example.quiz.composables.AnswerField
 import com.example.quiz.composables.AnswerValidation
 import com.example.quiz.composables.BrandImage
 import com.example.quiz.composables.NextButton
+import com.example.quiz.composables.TitleText
 import com.example.quiz.composables.QuestionText
 import com.example.quiz.composables.SubmitButton
-import com.example.quiz.composables.TitleText
 import com.example.quiz.composables.checkAnswer
 
-
 @Composable
-fun QuestionOneScreenLayout(onNextScreen: () -> Unit, modifier: Modifier = Modifier) {
+fun QuestionTwoScreenLayout(onNextScreen: () -> Unit, modifier: Modifier = Modifier) {
     var userAnswer by remember { mutableStateOf("") }
     var resultMessage by remember { mutableStateOf("") }
     Column(
@@ -33,15 +32,15 @@ fun QuestionOneScreenLayout(onNextScreen: () -> Unit, modifier: Modifier = Modif
             .fillMaxSize(),
         verticalArrangement = Arrangement.Center,
 
-    ) {
+        ) {
         BrandImage()
-        TitleText("Question 1:")
-        QuestionText("When did humans first land on the moon?")
+        TitleText("Question 2:")
+        QuestionText("Where would you be, if you were standing on the Spanish Steps?")
         AnswerValidation(resultMessage)
         AnswerField(answer = userAnswer, onValueChange = {userAnswer = it})
         Spacer(modifier = modifier.height(50.dp))
-        SubmitButton(onClick = { resultMessage = if (
-            checkAnswer(userAnswer = userAnswer, correctAnswer = "1969")
+        SubmitButton(onClick = {resultMessage = if (
+            checkAnswer(userAnswer = userAnswer, correctAnswer = "Rome")
             )
             "Correct!" else "Try again!"
         })

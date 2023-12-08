@@ -6,14 +6,15 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.quiz.screens.FinalScreenLayout
 import com.example.quiz.screens.QuestionOneScreenLayout
+import com.example.quiz.screens.QuestionTwoScreenLayout
 import com.example.quiz.ui.theme.QuizTheme
 
 class MainActivity : ComponentActivity() {
@@ -53,18 +54,17 @@ fun App() {
         }
 
         composable(route = "questionTwo") {
-            QuestionTwoScreenLayout()
+            QuestionTwoScreenLayout(onNextScreen = {
+                navController.navigate("finalScreen")
+            })
+        }
+
+        composable(route = "finalScreen") {
+            FinalScreenLayout(onNextScreen = {})
         }
     }
 }
 
-@Composable
-fun QuestionTwoScreenLayout() {
-    Text(
-        modifier = Modifier.fillMaxSize(),
-        text = "This is the Question 2 screen",
-    )
-}
 
 @Preview(showBackground = true)
 @Composable
